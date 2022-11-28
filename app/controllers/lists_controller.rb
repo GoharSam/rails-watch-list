@@ -8,6 +8,11 @@ class ListsController < ApplicationController
     @listt = List.new
   end
 
+  def show
+    @bookmark = Bookmark.new
+    @review = Review.new(list: @list)
+  end
+
   def create
     @list = List.new(list_params)
     if @list.save
@@ -17,11 +22,9 @@ class ListsController < ApplicationController
     end
   end
 
-      private
+  private
 
   def list_params
     params.require(:list).permit(:name)
   end
-
-
 end
